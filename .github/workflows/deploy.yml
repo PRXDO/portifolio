@@ -3,15 +3,13 @@ name: Deploy Portfolio to GitHub Pages
 on:
   push:
     branches:
-      - main  # Ou 'master', dependendo do nome da sua branch principal
+      - main  # Se a sua branch se chamar master, altere aqui para master
 
-# Permissões necessárias para que a Action escreva/publique no GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Permite apenas um deploy concorrente por vez
 concurrency:
   group: 'pages'
   cancel-in-progress: true
@@ -27,12 +25,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Pages
-        uses: actions/pages-config-action@v5
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Pasta onde estão seus arquivos estáticos ('.' significa a raiz)
           path: '.'
 
       - name: Deploy to GitHub Pages
